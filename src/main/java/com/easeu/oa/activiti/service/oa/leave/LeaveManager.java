@@ -1,27 +1,28 @@
 package com.easeu.oa.activiti.service.oa.leave;
 
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.easeu.oa.activiti.dao.LeaveDao;
+import com.easeu.oa.activiti.dao.LeaveRepository;
 import com.easeu.oa.activiti.entity.oa.Leave;
-
-import java.util.Date;
 
 /**
  * 请假实体管理
  *
  * @author HenryYan
  */
-@Component
+@Service
 @Transactional(readOnly = true)
 public class LeaveManager {
 
-    private LeaveDao leaveDao;
+	@Autowired
+    private LeaveRepository leaveRepository;
 
     public Leave getLeave(Long id) {
-        return leaveDao.findOne(id);
+        return leaveRepository.findOne(id);
     }
 
     @Transactional(readOnly = false)
@@ -29,12 +30,7 @@ public class LeaveManager {
         if (entity.getId() == null) {
             entity.setApplyTime(new Date());
         }
-        leaveDao.save(entity);
-    }
-
-    @Autowired
-    public void setLeaveDao(LeaveDao leaveDao) {
-        this.leaveDao = leaveDao;
+        leaveRepository.save(entity);
     }
 
 }

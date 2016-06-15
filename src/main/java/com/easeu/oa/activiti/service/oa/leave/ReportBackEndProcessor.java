@@ -1,16 +1,16 @@
 package com.easeu.oa.activiti.service.oa.leave;
 
+import java.util.Date;
+
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.easeu.oa.activiti.entity.oa.Leave;
-
-import java.util.Date;
 
 /**
  * 销假后处理器
@@ -19,7 +19,7 @@ import java.util.Date;
  *
  * @author HenryYan
  */
-@Component
+@Service
 @Transactional
 public class ReportBackEndProcessor implements TaskListener {
 
